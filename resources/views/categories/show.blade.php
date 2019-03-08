@@ -3,7 +3,8 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1>Categoria {{ $category->name }}</h1>
+        <h1>Categoria: {{ $category->name }}</h1>
+        <img src="{{ asset('storage/'. $category->poster)}}" alt="">
         <table class="table">
           <thead>
             <tr>
@@ -15,18 +16,13 @@
             </tr>
           </thead>
           <tbody>
-            @forelse ($categories as $category)
               <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->slug }}</td>
                 <td>{{ $category->created_at }}</td>
                 <td>{{ $category->updated_at }}</td>
-
               </tr>
-            @empty
-              <p>Non ci sono categorie</p>
-            @endforelse
           </tbody>
         </table>
       </div>

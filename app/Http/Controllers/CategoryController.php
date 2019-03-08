@@ -14,7 +14,7 @@ class CategoryController extends Controller
       $this->middleware('permission:vedere');
       $this->middleware('permission:modificare')->except(['index', 'show']);
     }
-    
+
     public function index()
     {
       $categories = Category::all();
@@ -50,7 +50,6 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-      $categories = Category::all();
       return view('categories.show', compact('category', 'categories'));
     }
 
@@ -70,11 +69,11 @@ class CategoryController extends Controller
     {
       $data = $request->all();
 
-      //$poster = Storage::disk('public')->put('categories_poster', $data['poster_file']);
+      $poster = Storage::disk('public')->put('categories_poster', $data['poster_file']);
 
       $data['slug'] = Str::slug($data['name']);
 
-      //$data['poster'] = $poster;
+      $data['poster'] = $poster;
 
       $category->update($data);
 
